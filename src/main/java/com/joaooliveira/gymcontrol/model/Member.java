@@ -1,12 +1,18 @@
 package com.joaooliveira.gymcontrol.model;
 
 public class Member {
-    private Long id;
+    private int id;
     private String nameMember;
     private String cpfMember;
     private StatusMember status;
     
-     public Member(Long id, String nameMember, String cpfMember, StatusMember status){
+    public Member(String nameMember, String cpfMember, StatusMember status){
+        this.nameMember = nameMember;
+        this.cpfMember = cpfMember;
+        this.status = status;
+    }
+
+    public Member(int id, String nameMember, String cpfMember, StatusMember status){
          this.id = id;
          this.nameMember = nameMember;
          this.cpfMember = cpfMember;
@@ -14,16 +20,16 @@ public class Member {
      }
     
     public enum StatusMember {
-        Active,
-        Expired,
-        Blocked
+        ACTIVE,
+        EXPIRED,
+        BLOCKED
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

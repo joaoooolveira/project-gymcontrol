@@ -41,7 +41,7 @@ public class MemberRepository {
                         Member.StatusMember.valueOf(statusBD);
                 
                 Member member = new Member(
-                        rs.getLong("id"),
+                        rs.getInt("id"),
                         rs.getString("nameMember"),
                         rs.getString("cpfMember"),
                         status
