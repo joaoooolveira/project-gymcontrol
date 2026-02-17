@@ -200,5 +200,5 @@ README.html
 .idea
 .exercism
 
-#Gym control paths
-*.com.joaooliveira.gymcontrol.util.ConnectDB
+# Ignore util folder
+src/main/java/com/joaooliveira/gymcontrol/util/
