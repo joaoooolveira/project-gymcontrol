@@ -5,7 +5,7 @@ public class Member {
     private String nameMember;
     private String cpfMember;
     private StatusMember status;
-    
+
     public Member(String nameMember, String cpfMember, StatusMember status){
         this.nameMember = nameMember;
         this.cpfMember = cpfMember;
