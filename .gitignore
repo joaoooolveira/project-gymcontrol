@@ -200,5 +200,5 @@ README.html
 .idea
 .exercism
 
-# Ignore util folder
-src/main/java/com/joaooliveira/gymcontrol/util/
+# Ignore properties content
+application.properties

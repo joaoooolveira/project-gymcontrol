@@ -10,7 +10,7 @@ public class MemberRepositoryTest {
         
         Member member = new Member(
                     "Joao Pedro",
-                    "12345678900",
+                    "12345678910",
                     StatusMember.ACTIVE);
         
         repository.addMember(member);
