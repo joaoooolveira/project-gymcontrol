@@ -201,4 +201,4 @@ README.html
 .exercism
 
 # Ignore properties content
-application.properties
+src/main/resources/application.properties
