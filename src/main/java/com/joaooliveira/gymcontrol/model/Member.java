@@ -7,7 +7,6 @@ public class Member {
     private StatusMember status;
 
     public Member(String nameMember, String cpfMember, StatusMember status){
-        validatingData(nameMember, cpfMember, status);
         this.nameMember = nameMember;
         this.cpfMember = cpfMember;
         this.status = status;
@@ -57,15 +56,5 @@ public class Member {
 
     public void setStatus(StatusMember status) {
         this.status = status;
-    }
-    
-    private void validatingData(String name, String cpf, StatusMember status){
-        if(name.isBlank()){
-            throw new IllegalArgumentException("Invalid name");
-        } if(cpf.isBlank()){
-            throw new IllegalArgumentException("Invalid CPF");
-        } if(status == null){
-            throw new IllegalArgumentException("Invalid status");
-        }
     }
 }

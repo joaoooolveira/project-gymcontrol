@@ -12,27 +12,9 @@ public class MemberRepositoryTest {
         MemberRepository repository = new MemberRepository();
         MemberService service = new MemberService(repository);
         
-        Member member = new Member(
-                    "test3",
-                    "12345678940",
-                    StatusMember.ACTIVE);
         
-        repository.addMember(member);
-        repository.deactivateMember(1);
-        
-        ArrayList<Member> members = repository.listMembersByStatus(
-                        Member.StatusMember.ACTIVE);
-        
-        for (Member m : members){
-            System.out.println(
-                m.getNameMember() + " | CPF: " + m.getCpfMember());
-        }
-        
-        ArrayList<Member> allMembers = repository.listAllMembers();
-        
-        for (Member m : allMembers){
-            System.out.println(
-                m.getNameMember() + " | CPF: " + m.getCpfMember());
-        }
+        service.listMembersByStatus(StatusMember.ACTIVE)
+                .forEach(m ->
+                    System.out.println(m.getNameMember() + " | CPF: " + m.getCpfMember() + " | Status: " + m.getStatus().name()));
     }
 }

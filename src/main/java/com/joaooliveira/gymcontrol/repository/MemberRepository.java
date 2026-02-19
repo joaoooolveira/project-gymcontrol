@@ -12,11 +12,6 @@ public class MemberRepository {
     
     public void addMember(Member member){
         
-        if(existsByCpf(member.getCpfMember())){
-            System.out.println("Esse CPF já existe no sistema");
-            return;
-        }
-        
         String sql = "insert into member (nameMember, cpfMember, status) values (?, ?, ?)";
         
         try(Connection conn = ConnectDB.getConnection();
