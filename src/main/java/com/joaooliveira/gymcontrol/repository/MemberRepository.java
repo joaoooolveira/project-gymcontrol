@@ -1,6 +1,7 @@
 package com.joaooliveira.gymcontrol.repository;
 
 import com.joaooliveira.gymcontrol.model.Member;
+import com.joaooliveira.gymcontrol.model.Member.StatusMember;
 import com.joaooliveira.gymcontrol.util.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -68,21 +69,21 @@ public class MemberRepository {
         }        
     }
     
-    public ArrayList<Member> listMembers(){
+    public ArrayList<Member> listMembersByStatus(StatusMember status){
         ArrayList<Member> members = new ArrayList<>();
         String sql = "select * from member where status = ?";
         
         try (Connection conn = ConnectDB.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery()) {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             
-            stmt.setString(1, Member.StatusMember.ACTIVE.name());
+            stmt.setString(1, status.name());
             
-            while (rs.next()){
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()){
                 
-                String statusBD = rs.getString("status");
-                Member.StatusMember status = 
-                        Member.StatusMember.valueOf(statusBD);
+                StatusMember statusBD = 
+                        StatusMember.valueOf(rs.getString("status"));
+        
                 
                 Member member = new Member(
                         rs.getInt("id"),
@@ -92,6 +93,7 @@ public class MemberRepository {
                 );
                 
                 members.add(member);
+                }
             }
         } catch (Exception e){
             e.printStackTrace();
