@@ -11,11 +11,10 @@ import java.util.ArrayList;
 public class MemberRepository {
     
     public void addMember(Member member){
-        
         String sql = "insert into member (nameMember, cpfMember, status) values (?, ?, ?)";
         
         try(Connection conn = ConnectDB.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            PreparedStatement stmt = conn.prepareStatement(sql)){
             
             stmt.setString(1, member.getNameMember());
             stmt.setString(2, member.getCpfMember());
@@ -28,7 +27,26 @@ public class MemberRepository {
         }
     }
     
-    public void deactivateMember(int id){
+    public boolean updateMember(Member member, int id){
+        String sql = "update member set nameMember = ?, cpfMember = ?, status = ? where id = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            
+            stmt.setString(1, member.getNameMember());
+            stmt.setString(2, member.getCpfMember());
+            stmt.setString(3, member.getStatus().name());
+            stmt.setInt(4, id);
+            
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+            
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public boolean deactivateMember(int id){
         String sql = "update member set status = ? where id = ?";
         
         try(Connection conn = ConnectDB.getConnection();
@@ -38,18 +56,14 @@ public class MemberRepository {
             stmt.setInt(2, id);
             
             int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
             
-            if(rowsAffected > 0){
-                System.out.println("Aluno deletado com sucesso.");
-            } else {
-                System.out.println("Nenhum aluno encontrado com esse id.");
-            }
         } catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
     
-    public void activateMember(int id){
+    public boolean activateMember(int id){
         String sql = "update member set status = ? where id = ?";
         
         try(Connection conn = ConnectDB.getConnection();
@@ -58,9 +72,11 @@ public class MemberRepository {
             stmt.setString(1, Member.StatusMember.ACTIVE.name());
             stmt.setInt(2, id);
             
-            stmt.executeUpdate();
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+            
         } catch(Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }        
     }
     
@@ -133,13 +149,31 @@ public class MemberRepository {
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, cpf);
-            ResultSet rs = stmt.executeQuery();
             
-            return rs.next();
+            try(ResultSet rs = stmt.executeQuery()){
+                return rs.next();
+            }
+            
         } catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return false;
+    }
+    
+    public boolean existsByCpfAndNotId(String cpf, int id){
+        String sql = "select 1 from member where cpf = ? and id <> ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            
+            stmt.setString(1, cpf);
+            stmt.setInt(2, id);
+            
+            try(ResultSet rs = stmt.executeQuery()){
+                return rs.next();
+            }
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 }
 

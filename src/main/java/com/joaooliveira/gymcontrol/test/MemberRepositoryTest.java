@@ -12,6 +12,10 @@ public class MemberRepositoryTest {
         MemberRepository repository = new MemberRepository();
         MemberService service = new MemberService(repository);
         
+        Member member = new Member("test4", "12345678970", StatusMember.ACTIVE);
+        
+        //service.registerMember(member.getNameMember(), member.getCpfMember());
+        service.updateMember(member, 7);
         
         service.listMembersByStatus(StatusMember.ACTIVE)
                 .forEach(m ->

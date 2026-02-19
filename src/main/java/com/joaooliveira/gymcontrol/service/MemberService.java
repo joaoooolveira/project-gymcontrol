@@ -32,6 +32,26 @@ public class MemberService {
         repository.addMember(member);
     }
     
+    public void updateMember(Member member, int id) {
+        if(member.getNameMember() == null || member.getNameMember().isBlank()){
+            throw new IllegalArgumentException("Name is invalid");
+        }
+        
+        if(member.getCpfMember() == null || member.getCpfMember().isBlank() || member.getCpfMember().length() != 11){
+            throw new IllegalArgumentException("CPF is invalid");
+        }
+        
+        if(repository.existsByCpfAndNotId(member.getCpfMember(), id)){
+            throw new IllegalArgumentException("CPF already registered");
+        }
+        
+        boolean updated = repository.updateMember(member, id);
+        
+        if(!updated){
+            throw new IllegalArgumentException("Member not found");
+        }
+    }
+    
     public List<Member> listAllMembers(){
         return repository.listAllMembers();
     }
@@ -45,18 +65,18 @@ public class MemberService {
     }
     
     public void activateMember(int id){
-        if(id <= 0){
-            throw new IllegalArgumentException("Invalid member ID");
-        }
+        boolean success = repository.activateMember(id);
         
-        repository.activateMember(id);
+        if(!success){
+            throw new IllegalArgumentException("Member not found");
+        }
     }
     
     public void deactivateMember(int id){
-        if(id <= 0){
-            throw new IllegalArgumentException("Invalid member ID");
-        }
+        boolean success = repository.deactivateMember(id);
         
-        repository.deactivateMember(id);
+        if(!success){
+            throw new IllegalArgumentException("Member not found");
+        }
     }
 }
