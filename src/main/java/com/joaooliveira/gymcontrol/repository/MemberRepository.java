@@ -10,8 +10,13 @@ import java.util.ArrayList;
 public class MemberRepository {
     
     public void addMember(Member member){
+        
+        if(existsByCpf(member.getCpfMember())){
+            System.out.println("Esse CPF já existe no sistema");
+            return;
+        }
+        
         String sql = "insert into member (nameMember, cpfMember, status) values (?, ?, ?)";
-        ArrayList<Member> members = new ArrayList<>();
         
         try(Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -20,15 +25,8 @@ public class MemberRepository {
             stmt.setString(2, member.getCpfMember());
             stmt.setString(3, member.getStatus().name());
             
-            for(Member m : members){
-                if(member.getCpfMember().equals(m.getCpfMember())){
-                    System.out.println("Esse cpf já existe no sistema.");
-                }
-                else {
-                    stmt.executeUpdate();
-                }
-            }
- 
+            stmt.executeUpdate();
+            
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -100,5 +98,21 @@ public class MemberRepository {
         }
         
         return members;
+    }
+    
+    public boolean existsByCpf(String cpf){
+        String sql = "select 1 from member where cpfMember = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.executeQuery();
+            
+            return rs.next();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
