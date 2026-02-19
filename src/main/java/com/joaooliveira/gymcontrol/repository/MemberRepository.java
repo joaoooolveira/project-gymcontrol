@@ -28,15 +28,14 @@ public class MemberRepository {
     }
     
     public boolean updateMember(Member member, int id){
-        String sql = "update member set nameMember = ?, cpfMember = ?, status = ? where id = ?";
+        String sql = "update member set nameMember = ?, cpfMember = ? where id = ?";
         
         try(Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
             
             stmt.setString(1, member.getNameMember());
             stmt.setString(2, member.getCpfMember());
-            stmt.setString(3, member.getStatus().name());
-            stmt.setInt(4, id);
+            stmt.setInt(3, id);
             
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
@@ -130,7 +129,7 @@ public class MemberRepository {
                         rs.getInt("id"),
                         rs.getString("nameMember"),
                         rs.getString("cpfMember"),
-                        status
+                        statusBD
                 );
                 members.add(member);
                 }
@@ -160,7 +159,7 @@ public class MemberRepository {
     }
     
     public boolean existsByCpfAndNotId(String cpf, int id){
-        String sql = "select 1 from member where cpf = ? and id <> ?";
+        String sql = "select 1 from member where cpfMember = ? and id <> ?";
         
         try(Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){

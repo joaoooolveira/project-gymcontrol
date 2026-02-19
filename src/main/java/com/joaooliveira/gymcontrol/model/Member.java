@@ -21,8 +21,6 @@ public class Member {
     
     public enum StatusMember {
         ACTIVE,
-        EXPIRED,
-        BLOCKED,
         INACTIVE
     }
 
