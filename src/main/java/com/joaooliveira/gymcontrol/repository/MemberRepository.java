@@ -69,6 +69,36 @@ public class MemberRepository {
         }        
     }
     
+    public ArrayList<Member> listAllMembers(){
+        ArrayList<Member> members = new ArrayList<>();
+        String sql = "select * from member";
+        
+        try (Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+            
+            while (rs.next()){
+                
+                String statusBD = rs.getString("status");
+                Member.StatusMember status =
+                        Member.StatusMember.valueOf(statusBD);
+                
+                Member member = new Member(
+                        rs.getInt("id"),
+                        rs.getString("nameMember"),
+                        rs.getString("cpfMember"),
+                        status
+                );
+                
+                members.add(member);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        return members;
+    }
+    
     public ArrayList<Member> listMembersByStatus(StatusMember status){
         ArrayList<Member> members = new ArrayList<>();
         String sql = "select * from member where status = ?";

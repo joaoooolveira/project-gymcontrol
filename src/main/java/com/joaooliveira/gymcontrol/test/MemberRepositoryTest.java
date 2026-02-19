@@ -18,12 +18,19 @@ public class MemberRepositoryTest {
                     StatusMember.ACTIVE);
         
         repository.addMember(member);
-        repository.activateMember(2);
+        repository.deactivateMember(1);
         
         ArrayList<Member> members = repository.listMembersByStatus(
                         Member.StatusMember.ACTIVE);
         
         for (Member m : members){
+            System.out.println(
+                m.getNameMember() + " | CPF: " + m.getCpfMember());
+        }
+        
+        ArrayList<Member> allMembers = repository.listAllMembers();
+        
+        for (Member m : allMembers){
             System.out.println(
                 m.getNameMember() + " | CPF: " + m.getCpfMember());
         }
