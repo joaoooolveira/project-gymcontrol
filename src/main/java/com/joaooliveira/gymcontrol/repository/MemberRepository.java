@@ -11,6 +11,7 @@ public class MemberRepository {
     
     public void addMember(Member member){
         String sql = "insert into member (nameMember, cpfMember, status) values (?, ?, ?)";
+        ArrayList<Member> members = new ArrayList<>();
         
         try(Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -19,8 +20,15 @@ public class MemberRepository {
             stmt.setString(2, member.getCpfMember());
             stmt.setString(3, member.getStatus().name());
             
-            stmt.executeUpdate();
-           
+            for(Member m : members){
+                if(member.getCpfMember().equals(m.getCpfMember())){
+                    System.out.println("Esse cpf já existe no sistema.");
+                }
+                else {
+                    stmt.executeUpdate();
+                }
+            }
+ 
         }catch(Exception e){
             e.printStackTrace();
         }

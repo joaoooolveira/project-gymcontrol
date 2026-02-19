@@ -15,8 +15,9 @@ public class MemberRepositoryTest {
                     StatusMember.ACTIVE);
         
         repository.addMember(member);
-        repository.listMembers();
+//        repository.activateMember(1);
         
+        repository.listMembers();
         ArrayList<Member> members = repository.listMembers();
         
         for (Member m : members){
