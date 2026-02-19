@@ -13,8 +13,8 @@ public class MemberRepositoryTest {
         MemberService service = new MemberService(repository);
         
         Member member = new Member(
-                    "test2",
-                    "12345678920",
+                    "test3",
+                    "12345678940",
                     StatusMember.ACTIVE);
         
         repository.addMember(member);
