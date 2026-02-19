@@ -26,13 +26,51 @@ public class MemberRepository {
         }
     }
     
+    public void deactivateMember(int id){
+        String sql = "update member set status = ? where id = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, Member.StatusMember.INACTIVE.name());
+            stmt.setInt(2, id);
+            
+            int rowsAffected = stmt.executeUpdate();
+            
+            if(rowsAffected > 0){
+                System.out.println("Aluno deletado com sucesso.");
+            } else {
+                System.out.println("Nenhum aluno encontrado com esse id.");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void activateMember(int id){
+        String sql = "update member set status = ? where id = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, Member.StatusMember.ACTIVE.name());
+            stmt.setInt(2, id);
+            
+            stmt.executeUpdate();
+        } catch(Exception e){
+            e.printStackTrace();
+        }        
+    }
+    
     public ArrayList<Member> listMembers(){
         ArrayList<Member> members = new ArrayList<>();
-        String sql = "select * from member";
+        String sql = "select * from member where status = ?";
         
         try (Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery()) {
+            
+            stmt.setString(1, Member.StatusMember.ACTIVE.name());
             
             while (rs.next()){
                 
