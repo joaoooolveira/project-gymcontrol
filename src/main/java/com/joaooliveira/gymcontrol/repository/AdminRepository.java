@@ -59,13 +59,13 @@ public class AdminRepository {
         }
     }
     
-    public Admin findByUsername(Admin admin, String username){
+    public Admin findByUsername(String username){
         String sql = "select * from admin where usernameAdmin = ?";
         
         try(Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)){
                 
-            stmt.setString(1, admin.getUsername());
+            stmt.setString(1, username);
             
             try(ResultSet rs = stmt.executeQuery()) {
                 if(rs.next()) {
@@ -85,7 +85,7 @@ public class AdminRepository {
     }
     
     public boolean existsByUsername(String username){
-        String sql = "select 1 from member where usernameAdmin = ?";
+        String sql = "select 1 from admin where usernameAdmin = ?";
         
         try(Connection conn = ConnectDB.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
