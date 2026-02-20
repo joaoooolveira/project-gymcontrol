@@ -25,31 +25,6 @@ public class AdminRepository {
         }
     }
     
-    public Admin findByUsername(Admin admin, String username){
-        String sql = "select * from admin where usernameAdmin = ?";
-        
-        try(Connection conn = ConnectDB.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)){
-                
-            stmt.setString(1, admin.getUsername());
-            
-            try(ResultSet rs = stmt.executeQuery()) {
-                if(rs.next()) {
-                    return new Admin(
-                        rs.getInt("id"),
-                        rs.getString("usernameAdmin"),
-                        rs.getString("password"),
-                        Admin.StatusAdmin.valueOf(rs.getString("status"))
-                    );
-                }
-                
-                return null;
-            }
-        } catch(Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-    
     public boolean activateAdmin(int id){
         String sql = "update admin set status = ? where id = ?";
         
@@ -78,6 +53,48 @@ public class AdminRepository {
             
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
+            
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public Admin findByUsername(Admin admin, String username){
+        String sql = "select * from admin where usernameAdmin = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+                
+            stmt.setString(1, admin.getUsername());
+            
+            try(ResultSet rs = stmt.executeQuery()) {
+                if(rs.next()) {
+                    return new Admin(
+                        rs.getInt("id"),
+                        rs.getString("usernameAdmin"),
+                        rs.getString("password"),
+                        Admin.StatusAdmin.valueOf(rs.getString("status"))
+                    );
+                }
+                
+                return null;
+            }
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public boolean existsByUsername(String username){
+        String sql = "select 1 from member where usernameAdmin = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, username);
+            
+            try(ResultSet rs = stmt.executeQuery()){
+                return rs.next();
+            }
             
         } catch (Exception e){
             throw new RuntimeException(e);
