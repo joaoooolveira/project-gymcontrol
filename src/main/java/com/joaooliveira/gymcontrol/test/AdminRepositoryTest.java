@@ -8,6 +8,6 @@ public class AdminRepositoryTest {
         AdminRepository repository = new AdminRepository();
         AdminService service = new AdminService(repository);
         
-        service.registerAdmin("test2", "          ");
+        service.registerAdmin("test", "test1234");
     }
 }
