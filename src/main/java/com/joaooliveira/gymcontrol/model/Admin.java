@@ -1,25 +1,30 @@
 package com.joaooliveira.gymcontrol.model;
 
 public class Admin {
-    private Long id;
+    private int id;
     private String username;
     private String password;
-    private boolean active;
+    private StatusAdmin status;
 
-    public Admin(String username, String password, boolean active) {
+    public Admin(String username, String password, StatusAdmin status) {
         this.username = username;
         this.password = password;
-        this.active = active;
+        this.status = status;
     }
 
-    public Admin(Long id, String username, String password, boolean active) {
+    public Admin(int id, String username, String password, StatusAdmin status) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.active = active;
+        this.status = status;
+    }
+    
+    public enum StatusAdmin {
+        ACTIVE,
+        INACTIVE
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -39,13 +44,11 @@ public class Admin {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
+    public StatusAdmin getStatus() {
+        return status;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setStatus(StatusAdmin status) {
+        this.status = status;
     }
-    
-    
 }

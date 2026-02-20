@@ -45,23 +45,6 @@ public class MemberRepository {
         }
     }
     
-    public boolean deactivateMember(int id){
-        String sql = "update member set status = ? where id = ?";
-        
-        try(Connection conn = ConnectDB.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, Member.StatusMember.INACTIVE.name());
-            stmt.setInt(2, id);
-            
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
-            
-        } catch (Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-    
     public boolean activateMember(int id){
         String sql = "update member set status = ? where id = ?";
         
@@ -77,6 +60,23 @@ public class MemberRepository {
         } catch(Exception e){
             throw new RuntimeException(e);
         }        
+    }
+    
+    public boolean deactivateMember(int id){
+        String sql = "update member set status = ? where id = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, Member.StatusMember.INACTIVE.name());
+            stmt.setInt(2, id);
+            
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+            
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
     
     public ArrayList<Member> listAllMembers(){
