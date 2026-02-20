@@ -13,6 +13,8 @@ public class MemberService {
     }
     
     public void registerMember(String name, String cpf) {
+        cpf = cpf.trim();
+        
         if(name == null || name.isBlank()){
             throw new IllegalArgumentException("Name is invalid");
         }

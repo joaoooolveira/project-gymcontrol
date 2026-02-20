@@ -13,6 +13,8 @@ public class AdminService {
     }
     
     public void registerAdmin(String username, String password){
+        username = username.trim();
+        
         if(username == null || username.isBlank()){
             throw new IllegalArgumentException("Username is invalid");
         }
@@ -34,6 +36,8 @@ public class AdminService {
     }
     
     public Admin login(String username, String password){
+        username = username.trim();
+        
         if(username == null || username.isBlank()){
             throw new IllegalArgumentException("Username is invalid");
         }
@@ -56,6 +60,7 @@ public class AdminService {
             throw new IllegalArgumentException("Invalid password");
         }
         
+        System.out.println("Login concluido");
         return admin;
     }
     
