@@ -58,4 +58,20 @@ public class AdminService {
         
         return admin;
     }
+    
+    public void activateAdmin(int id){
+        boolean success = repository.activateAdmin(id);
+        
+        if(!success){
+            throw new IllegalArgumentException("Admin not found");
+        }
+    }
+    
+    public void deactivateAdmin(int id){
+        boolean success = repository.deactivateAdmin(id);
+        
+        if(!success){
+            throw new IllegalArgumentException("Admin not found");
+        }
+    }
 }
