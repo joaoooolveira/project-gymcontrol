@@ -48,5 +48,39 @@ public class AdminRepository {
         } catch(Exception e){
             throw new RuntimeException(e);
         }
-    }  
+    }
+    
+    public boolean activateAdmin(int id){
+        String sql = "update admin set status = ? where id = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, Admin.StatusAdmin.ACTIVE.name());
+            stmt.setInt(2, id);
+            
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+            
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }  
+    }
+    
+    public boolean deactivateAdmin(int id){
+        String sql = "update admin set status = ? where id = ?";
+        
+        try(Connection conn = ConnectDB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, Admin.StatusAdmin.INACTIVE.name());
+            stmt.setInt(2, id);
+            
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+            
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }
