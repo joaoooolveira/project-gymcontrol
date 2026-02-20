@@ -15,10 +15,13 @@ public class MemberRepositoryTest {
         Member member = new Member("test4", "12345678970", StatusMember.ACTIVE);
         
         //service.registerMember(member.getNameMember(), member.getCpfMember());
-        service.updateMember(member, 7);
+        service.deactivateMember(8);
         
-        service.listMembersByStatus(StatusMember.ACTIVE)
-                .forEach(m ->
-                    System.out.println(m.getNameMember() + " | CPF: " + m.getCpfMember() + " | Status: " + m.getStatus().name()));
+        ArrayList<Member> allMembers = repository.listAllMembers();
+        
+        for (Member m : allMembers){
+            System.out.println(
+                m.getNameMember() + " | CPF: " + m.getCpfMember() + " | Status: " + m.getStatus().name());
+        }
     }
 }
