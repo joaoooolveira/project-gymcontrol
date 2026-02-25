@@ -79,7 +79,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\herol\OneDrive\Pictures\4896c29a479322f05bf34cb69393ba4a.jpg"/>
+              <Image iconType="3" name="/com/joaooliveira/gymcontrol/images/menu.jpg.jpg"/>
             </Property>
           </Properties>
         </Component>

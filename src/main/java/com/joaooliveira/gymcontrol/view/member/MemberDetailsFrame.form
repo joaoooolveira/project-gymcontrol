@@ -66,7 +66,7 @@
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="statusLabel" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="deactiveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="activeButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -148,7 +148,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\herol\OneDrive\Pictures\Gemini_Generated_Image_b5lkznb5lkznb5lk-removebg-preview.png"/>
+          <Image iconType="3" name="/com/joaooliveira/gymcontrol/images/logo.png.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>

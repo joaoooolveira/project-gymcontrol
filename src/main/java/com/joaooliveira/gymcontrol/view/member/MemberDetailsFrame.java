@@ -89,7 +89,7 @@ public class MemberDetailsFrame extends javax.swing.JFrame {
         activeButton.setText("Ativar");
         activeButton.addActionListener(this::activeButtonActionPerformed);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\herol\\OneDrive\\Pictures\\Gemini_Generated_Image_b5lkznb5lkznb5lk-removebg-preview.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/joaooliveira/gymcontrol/images/logo.png.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,7 +133,7 @@ public class MemberDetailsFrame extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deactiveButton)
                     .addComponent(activeButton))
