@@ -60,7 +60,6 @@ public class AdminService {
             throw new IllegalArgumentException("Invalid password");
         }
         
-        System.out.println("Login concluido");
         return admin;
     }
     
