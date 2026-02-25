@@ -89,7 +89,7 @@ public class MemberDetailsFrame extends javax.swing.JFrame {
         activeButton.setText("Ativar");
         activeButton.addActionListener(this::activeButtonActionPerformed);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/joaooliveira/gymcontrol/images/logo.png.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

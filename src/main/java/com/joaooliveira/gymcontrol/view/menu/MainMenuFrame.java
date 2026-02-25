@@ -119,7 +119,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1350, 750));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/joaooliveira/gymcontrol/images/menu.jpg.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/menu.jpg"))); // NOI18N
 
         memberTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

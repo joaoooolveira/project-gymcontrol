@@ -65,7 +65,7 @@ public class NewMemberFrame extends javax.swing.JFrame {
         cancelButton.setText("Cancelar");
         cancelButton.addActionListener(this::cancelButtonActionPerformed);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/joaooliveira/gymcontrol/images/logo.png.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
