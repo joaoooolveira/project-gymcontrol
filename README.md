@@ -76,5 +76,4 @@ Observações:
 
 ##👤 Autor
 
-João Pedro de Oliveira
-Estudante de Desenvolvimento de Sistemas
+João Pedro de Oliveira | Estudante de Desenvolvimento de Sistemas
